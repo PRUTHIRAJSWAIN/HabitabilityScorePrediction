@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='main.css') }}">
+    <title>Title</title>
+</head>
+<body bgcolor="#d6d4e0">
+<h1>Headings</h1>
+<div class="container">
+
+    <form action="{{ url_for('pr')}}"method="post">
+        <div class="row">
+            <div class="col1">
+                <label for="PropertySelected">Property Type</label>
+            </div>
+            <div class="col2">
+                <select name="p" id="PropertySelected">
+                {% for i in features.Property_Type%}
+                    <option value="{{i}}">{{i}}</option>>
+                {%endfor%}
+                </select>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col1">
+                <label for="area">Property Area:</label>
+            </div>
+            <div class="col2">
+
+                <input type="text" id="area" name="a" placeholder="Area of of Property">
+                {% if features.AreaValid==False%}
+                    <p>Only Positive Value</p>
+                {%endif%}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col1">
+                <label for="NumWindows">Number of Windows:</label>
+            </div>
+            <div class="col2">
+                <select name="nw" id="NumWindows">
+                {% for i in features.Number_of_Windows%}
+                    <option value="{{i}}">{{i}}</option>>
+                {%endfor%}
+                </select>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col1">
+                <label for="NumberofDoors">Number of Doors:</label>
+            </div>
+            <div class="col2">
+                <select name="nd" id="NumberofDoors">
+                {% for i in features.Number_of_Doors%}
+                    <option value="{{i}}">{{i}}</option>>
+                {%endfor%}
+                </select>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col1">
+                <label for="Furnishing">Furnishing:</label>
+            </div>
+            <div class="col2">
+                <select name="f" id="Furnishing">
+                {% for i in features.Furnishing%}
+                    <option value="{{i}}">{{i}}</option>>
+                {%endfor%}
+                </select>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col1">
+                <label for="FrequencyofPC">No of Powercuts per Week:</label>
+            </div>
+            <div class="col2">
+                <select name="pc" id="FrequencyofPC">
+                {% for i in features.Number_of_Powercuts%}
+                    <option value="{{i}}">{{i}}</option>>
+                {%endfor%}
+                </select>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col1">
+                <label for="PowerBackup">Power Backup:</label>
+            </div>
+            <div class="col2">
+                <input type="checkbox" id="PowerBackup" name="pb">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col1">
+                <label for="WaterSupply">Water Supply:</label>
+            </div>
+            <div class="col2">
+                <select name="w" id="WaterSupply">
+                {% for i in features.Water_supply%}
+                    <option value="{{i}}">{{i}}</option>>
+                {%endfor%}
+                </select>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col1">
+                <label for="Traficscore">Trafic Density Score:</label>
+            </div>
+            <div class="col2">
+                <input type="text" id="traficscore" name="t" placeholder="traficdesityscore">
+                {% if features.TrafficValid==False%}
+                <p>Enter Number betwwen range</p>
+                {%endif%}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col1">
+                <label for="Crimerate">Crime Rate</label>
+            </div>
+            <div class="col2">
+                <select name="c" id="Crimerate">
+                {%for i in features.crime_rate%}
+                     <option value="{{i}}">{{i}}</option>>
+                {%endfor%}
+                </select>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col1">
+                <label for="dust">Dust and Noise:</label>
+            </div>
+            <div class="col2">
+                <select name="dust" id="dust">
+                {%for i in features.dustAndnoise%}
+                    <option value="{{i}}">{{i}}</option>>
+                {%endfor%}
+                </select>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col1">
+                <label for="air">Air Quality Index:</label>
+            </div>
+            <div class="col2">
+                <input type="text" id="air" name="air">
+                {% if features.AirValid==False%}
+                <p>Enter valid number</p>
+                {%endif%}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col1">
+                <label for="neigh">Neighborhood Review:</label>
+            </div>
+            <div class="col2">
+                <input type="text" id="neigh" name="n">
+                {% if features.NebValid ==False%}
+                <p>Enter valid number</p>
+                {% endif %}
+            </div>
+        </div>
+
+      <input type="submit" value="Predict" class="row">
+    </form>
+    {%if features.ScoreAvailable==True%}
+    <h1>Habituality score is :{{ans}}</h1>
+    {%endif%}
+    <h1>Habituality score is :{{ans}}</h1>
+</div>
+</body>
+</html>
